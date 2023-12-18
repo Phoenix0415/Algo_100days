@@ -31,3 +31,12 @@ n0->next = n1;
 n1->next = n2;
 n2->next = n3;
 n3->next = n4;
+
+/* insert node P after node n0 */
+void insert(ListNode *n0, ListNode *P)
+{
+	P->next = n1;
+	n0->next = P;
+}
+
+
