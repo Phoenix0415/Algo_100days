@@ -32,6 +32,15 @@ void removeItem(int *nums, int size, int index)
 	
 }
 
+int traverse(int *nums, int size)
+{
+	int count = 0;
+	// traverse the array using indice
+	for (int i = 0; i < size; i++)
+		count += nums[i];
+	return count;
+}
+
 int main(void)
 {
 	/* initializition of arrays */
@@ -67,5 +76,9 @@ int main(void)
 	for (int i = 0; i < 4; i++ )
 		printf("%d ", nums[i]);
 	printf("\n");
+	
+	
+	/* print the sum of elements using traverse function */
+	printf("the sum of all elements in the array is : %d\n\n", traverse(nums, 4));
 	return 0;
 }

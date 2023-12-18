@@ -28,9 +28,28 @@ def remove(nums: list[int], index: int):
 	# move all the elements after `index` one position forward
 	for i in range(index, len(nums) - 1):
 		nums[i] = nums[i + 1]
+	# Reduce the length of the list by 1
+	nums.pop()
+
+def traverse(nums: list[int]):
+	"""traverse the array"""
+	count = 0
+	for i in range(len(nums)):
+		count += nums[i]
+	"""
+	# traverse each element directly
+	for num in nums:
+		count += num
+	# or traverse both elements and index
+	for i, num in enumerate(nums):
+		count += nums[i]
+		count += num
+	"""
+	return count;
 
 print("a random number in nums: ", random_access(nums))
 insert(nums, 6, 1)
 print("insert 6 in nums at index 1:", nums)
 remove(nums, 1)
 print("delete the elememt at index 1:", nums)
+print("traverse the array and print the sum of all elements: ", traverse(nums))
