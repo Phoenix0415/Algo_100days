@@ -22,7 +22,15 @@ def insert(nums: list[int], num: int, index: int):
 	for i in range(len(nums)-1, index , -1):
 		nums[i] = nums[i-1]			
 	nums[index] = num
-	return nums
 
-print("a random number in nums: ",random_access(nums))
-print("insert 6 in nums at index 1: ",insert(nums,6,1))
+def remove(nums: list[int], index: int):
+	"""delete the element at index `index`"""
+	# move all the elements after `index` one position forward
+	for i in range(index, len(nums) - 1):
+		nums[i] = nums[i + 1]
+
+print("a random number in nums: ", random_access(nums))
+insert(nums, 6, 1)
+print("insert 6 in nums at index 1:", nums)
+remove(nums, 1)
+print("delete the elememt at index 1:", nums)
