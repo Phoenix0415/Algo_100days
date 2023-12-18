@@ -54,6 +54,16 @@ def find(nums: list[int], target: int) -> int:
 			return i
 	return -1
 
+def extend(nums: list[int], enlarge: int) -> list[int]:
+	"""extend the length of array"""
+	# initialize an enlarged array
+	res = [0] * (len(nums) + enlarge)
+	# copy all the elements to the new array
+	for i in range(len(nums)):
+		res[i] = nums[i]
+	# return new array
+	return res
+
 def main():
 	print("a random number in nums: ", random_access(nums))
 	
@@ -66,5 +76,8 @@ def main():
 	print("traverse the array and print the sum of all elements: ", traverse(nums))
 	
 	print("find 5 in the nums, the index is(-1 if hasn't been found): ", find(nums, 5))
+	
+	print("extend the length of nums by 3: ",extend(nums, 3))
+
 if __name__  == "__main__":
 	main()

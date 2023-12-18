@@ -53,6 +53,19 @@ int find(int *nums, int size, int target)
 	return -1;
 }
 
+/* extand the length of the array */
+int *extend(int *nums, int size, int enlarge)
+{
+	// initialize an extended array
+	int *res = (int *)malloc((size + enlarge) * sizeof(int));
+	//copy all the elements to the new array
+	for (int i = 0; i < size; i++)
+		res[i] = nums[i];
+	// initialize the extended elemens
+	for (int i = size; i < size + enlarge; i++)
+		res[i] = 0;
+	return res;
+}
 
 int main(void)
 {
@@ -96,5 +109,12 @@ int main(void)
 	/* print the result of find founction */
 	printf("find 5 in the nums, its index is(-1 if hasn't been found): %d\n", find(nums, 4, 5));
 	
+	/* print array after extension */
+	printf("extend nums by 3: ");
+	int *res = extend(nums, 4, 3);
+	for (int i = 0; i < 7; i++)
+		printf("%d ", res[i]);
+	printf("\n");
+
 	return 0;
 }
