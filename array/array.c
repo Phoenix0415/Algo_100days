@@ -32,6 +32,7 @@ void removeItem(int *nums, int size, int index)
 	
 }
 
+/* array traverse */
 int traverse(int *nums, int size)
 {
 	int count = 0;
@@ -40,6 +41,18 @@ int traverse(int *nums, int size)
 		count += nums[i];
 	return count;
 }
+
+/* find an element in the array */
+int find(int *nums, int size, int target)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (nums[i] == target)
+			return i;
+	}
+	return -1;
+}
+
 
 int main(void)
 {
@@ -77,8 +90,11 @@ int main(void)
 		printf("%d ", nums[i]);
 	printf("\n");
 	
-	
 	/* print the sum of elements using traverse function */
-	printf("the sum of all elements in the array is : %d\n\n", traverse(nums, 4));
+	printf("the sum of all elements in the array is : %d\n", traverse(nums, 4));
+	
+	/* print the result of find founction */
+	printf("find 5 in the nums, its index is(-1 if hasn't been found): %d\n", find(nums, 4, 5));
+	
 	return 0;
 }

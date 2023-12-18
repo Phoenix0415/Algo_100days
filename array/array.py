@@ -47,9 +47,24 @@ def traverse(nums: list[int]):
 	"""
 	return count;
 
-print("a random number in nums: ", random_access(nums))
-insert(nums, 6, 1)
-print("insert 6 in nums at index 1:", nums)
-remove(nums, 1)
-print("delete the elememt at index 1:", nums)
-print("traverse the array and print the sum of all elements: ", traverse(nums))
+def find(nums: list[int], target: int) -> int:
+	"""find the provided element in the array"""
+	for i in range(len(nums)):
+		if nums[i] == target:
+			return i
+	return -1
+
+def main():
+	print("a random number in nums: ", random_access(nums))
+	
+	insert(nums, 6, 1)
+	print("insert 6 in nums at index 1:", nums)
+	
+	remove(nums, 1)
+	print("delete the elememt at index 1:", nums)
+	
+	print("traverse the array and print the sum of all elements: ", traverse(nums))
+	
+	print("find 5 in the nums, the index is(-1 if hasn't been found): ", find(nums, 5))
+if __name__  == "__main__":
+	main()
