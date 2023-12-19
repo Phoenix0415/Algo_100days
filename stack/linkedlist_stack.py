@@ -1,4 +1,4 @@
-import linked_list
+from linked_list import ListNode, insert, remove, access, find, traverse
 
 class LinkedListStack:
     """implement stack with linked list"""
