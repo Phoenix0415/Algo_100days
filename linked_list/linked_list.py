@@ -4,7 +4,7 @@ class ListNode:
 		self.val: int = val					# the value of current node
 		self.next: ListNode | None = None 	# pointer point to next node
 
-class ListNode:
+class DoublyListNode:
     """doubly linked list"""
     def __init__(self, val: int):
         self.val: int = val                # value of current node
@@ -96,7 +96,7 @@ def main():
 	print("access node at index 3: ",value_ind3.val)
 	print("")	
 	
-	print("find node with value at 5, the index is: ",find(n0, 5))
+	print("find node with value 5, and report its index: ",find(n0, 5))
 	print("")
 
 if __name__ == "__main__":
