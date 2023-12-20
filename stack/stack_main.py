@@ -4,7 +4,7 @@ from array_stack import ArrayStack
 def main():
 	""" initialize stack1 with array, and do some operations """
 	stack1 = ArrayStack()
-	print("initialize stack1. whether it is empty:",stack1.is_empty())
+	print("Initialize stack1 with array. Whether it is empty:",stack1.is_empty())
 
 	stack1.push(1)
 	stack1.push(2)
@@ -15,10 +15,11 @@ def main():
 
 	stack1.pop()
 	print("pop the top element of the stack1:", stack1.to_list())
-
+	print("")
+ 
 	""" initialize stack2 with linked list, and do some operations """
 	stack2 = LinkedListStack()
-	print("initialize stack2. whether it is empty:",stack2.is_empty())
+	print("Initialize stack2 with linked list. Whether it is empty:",stack2.is_empty())
 
 	stack2.push(1)
 	stack2.push(2)
