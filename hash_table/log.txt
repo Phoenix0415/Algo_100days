@@ -1,0 +1,2 @@
+python: finished common way of implementation, but haven't test chaining and open addressing.
+c: half way down
