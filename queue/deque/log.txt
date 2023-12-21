@@ -1,0 +1,2 @@
+python: finished all implementations and tests
+c: half way down
