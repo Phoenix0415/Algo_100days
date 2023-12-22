@@ -1,30 +1,34 @@
-from tree_node import TreeNode, print_tree
+import sys # import sys module
+from pathlib import Path # import Path object from pathlib module
+
+sys.path.append(str(Path(__file__).parent.parent)) # add parent path to sys.path
+from modules import TreeNode, print_tree # import modules from parent path
 
 """Driver Code"""
 if __name__ == "__main__":
-    # 初始化二叉树
-    # 初始化节点
+    # initialize binary tree
+    # 1. initialize nodes
     n1 = TreeNode(val=1)
     n2 = TreeNode(val=2)
     n3 = TreeNode(val=3)
     n4 = TreeNode(val=4)
     n5 = TreeNode(val=5)
-    # 构建节点之间的引用（指针）
+    # 2. initialize connections
     n1.left = n2
     n1.right = n3
     n2.left = n4
     n2.right = n5
-    print("\n初始化二叉树\n")
+    print("\ninitialize binary tree\n")
     print_tree(n1)
 
-    # 插入与删除节点
+    # insert and delete node
     P = TreeNode(0)
-    # 在 n1 -> n2 中间插入节点 P
+    # insert node P bewteen n1 and n2
     n1.left = P
     P.left = n2
-    print("\n插入节点 P 后\n")
+    print("\nafter insert node P\n")
     print_tree(n1)
-    # 删除节点
+    # delete node P
     n1.left = n2
-    print("\n删除节点 P 后\n")
+    print("\nafter delete node P\n")
     print_tree(n1)

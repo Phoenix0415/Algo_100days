@@ -1,4 +1,8 @@
-from tree_node import TreeNode, list_to_tree, print_tree
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent.parent))
+from modules import TreeNode, list_to_tree, print_tree
 
 def pre_order(root: TreeNode | None):
     """前序遍历"""
