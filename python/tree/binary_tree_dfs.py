@@ -5,30 +5,30 @@ sys.path.append(str(Path(__file__).parent.parent))
 from modules import TreeNode, list_to_tree, print_tree
 
 def pre_order(root: TreeNode | None):
-    """前序遍历"""
+    """pre-order traversal of a binary tree"""
     if root is None:
         return
-    # 访问优先级：根节点 -> 左子树 -> 右子树
+    # the order of visiting nodes: root -> left subtree -> right subtree
     res.append(root.val)
     pre_order(root=root.left)
     pre_order(root=root.right)
 
 
 def in_order(root: TreeNode | None):
-    """中序遍历"""
+    """in-order traversal of a binary tree"""
     if root is None:
         return
-    # 访问优先级：左子树 -> 根节点 -> 右子树
+    # the order of visiting nodes: left subtree -> root -> right subtree
     in_order(root=root.left)
     res.append(root.val)
     in_order(root=root.right)
 
 
 def post_order(root: TreeNode | None):
-    """后序遍历"""
+    """post-order traversal of a binary tree"""
     if root is None:
         return
-    # 访问优先级：左子树 -> 右子树 -> 根节点
+    # the order of visiting nodes: left subtree -> right subtree -> root
     post_order(root=root.left)
     post_order(root=root.right)
     res.append(root.val)
@@ -36,23 +36,23 @@ def post_order(root: TreeNode | None):
 
 """Driver Code"""
 if __name__ == "__main__":
-    # 初始化二叉树
+    # initailize a binary tree
     # 这里借助了一个从数组直接生成二叉树的函数
     root = list_to_tree(arr=[1, 2, 3, 4, 5, 6, 7])
-    print("\n初始化二叉树\n")
+    print("\ninitialize a binary tree\n")
     print_tree(root)
 
-    # 前序遍历
+    # pre-order traversal
     res = []
     pre_order(root)
-    print("\n前序遍历的节点打印序列 = ", res)
+    print("\npre-order traversal of the binary tree = ", res)
 
-    # 中序遍历
+    # in-order traversal
     res.clear()
     in_order(root)
-    print("\n中序遍历的节点打印序列 = ", res)
+    print("\nin-order traversal of the binary tree = ", res)
 
-    # 后序遍历
+    # post-order traversal
     res.clear()
     post_order(root)
-    print("\n后序遍历的节点打印序列 = ", res)
+    print("\npost-order traversal of the binary tree = ", res) 

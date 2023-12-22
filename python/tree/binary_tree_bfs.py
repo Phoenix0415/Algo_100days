@@ -7,30 +7,30 @@ from collections import deque
 
 
 def level_order(root: TreeNode | None) -> list[int]:
-    """层序遍历"""
-    # 初始化队列，加入根节点
+    """level order traversal of a binary tree"""
+    # initialize a queue, and append root node
     queue: deque[TreeNode] = deque()
     queue.append(root)
-    # 初始化一个列表，用于保存遍历序列
+    # initialize a list to store node values
     res = []
     while queue:
-        node: TreeNode = queue.popleft()  # 队列出队
-        res.append(node.val)  # 保存节点值
+        node: TreeNode = queue.popleft()  # dequeue a node
+        res.append(node.val)  # store node value in res list
         if node.left is not None:
-            queue.append(node.left)  # 左子节点入队
+            queue.append(node.left)  # enqueue left child node
         if node.right is not None:
-            queue.append(node.right)  # 右子节点入队
+            queue.append(node.right)  # enqueue right child node
     return res
 
 
 """Driver Code"""
 if __name__ == "__main__":
-    # 初始化二叉树
-    # 这里借助了一个从数组直接生成二叉树的函数
+    # initialize a binary tree
+    # here we use a function to generate a binary tree from an array
     root: TreeNode = list_to_tree(arr=[1, 2, 3, 4, 5, 6, 7])
-    print("\n初始化二叉树\n")
+    print("\ninitialize a binary tree\n")
     print_tree(root)
 
-    # 层序遍历
+    # level order traversal
     res: list[int] = level_order(root)
-    print("\n层序遍历的节点打印序列 = ", res)
+    print("\nthe level order traversal of the binary tree = ", res)

@@ -1,20 +1,14 @@
-"""
-File: tree_node.py
-Created Time: 2021-12-11
-Author: Krahets (krahets@163.com)
-"""
-
 from collections import deque
 
 
 class TreeNode:
-    """二叉树节点类"""
+    """binary tree node"""
 
     def __init__(self, val: int = 0):
-        self.val: int = val  # 节点值
-        self.height: int = 0  # 节点高度
-        self.left: TreeNode | None = None  # 左子节点引用
-        self.right: TreeNode | None = None  # 右子节点引用
+        self.val: int = val  # the value of the node
+        self.height: int = 0  # the height of the node
+        self.left: TreeNode | None = None  # left child node reference
+        self.right: TreeNode | None = None  # right child node reference
 
     # 序列化编码规则请参考：
     # https://www.hello-algo.com/chapter_tree/array_representation_of_tree/
