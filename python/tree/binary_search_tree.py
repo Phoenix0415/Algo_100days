@@ -6,53 +6,53 @@ from modules import TreeNode, print_tree
 
 
 class BinarySearchTree:
-    """二叉搜索树"""
+    """binary search tree"""
 
     def __init__(self):
-        """构造方法"""
-        # 初始化空树
+        """constructor"""
+        # initialize the root node
         self._root = None
 
     def get_root(self) -> TreeNode | None:
-        """获取二叉树根节点"""
+        """get the root node"""
         return self._root
 
     def search(self, num: int) -> TreeNode | None:
-        """查找节点"""
+        """search the node with the given value"""
         cur = self._root
-        # 循环查找，越过叶节点后跳出
+        # using loop to find the target node, and break when the target node is found
         while cur is not None:
-            # 目标节点在 cur 的右子树中
+            # the target node is in the right subtree of cur node
             if cur.val < num:
                 cur = cur.right
-            # 目标节点在 cur 的左子树中
+            # the target node is in the left subtree of cur node
             elif cur.val > num:
                 cur = cur.left
-            # 找到目标节点，跳出循环
+            # the target node is found, break the loop
             else:
                 break
         return cur
 
     def insert(self, num: int):
-        """插入节点"""
-        # 若树为空，则初始化根节点
+        """insert a node with the given value"""
+        # if the tree is empty, initialize the root node
         if self._root is None:
             self._root = TreeNode(num)
             return
-        # 循环查找，越过叶节点后跳出
+        # using loop to find the insert position, and break when the insert position is found
         cur, pre = self._root, None
         while cur is not None:
-            # 找到重复节点，直接返回
+            # find the insert position, break the loop
             if cur.val == num:
                 return
             pre = cur
-            # 插入位置在 cur 的右子树中
+            # the insert position is in the right subtree of cur node
             if cur.val < num:
                 cur = cur.right
-            # 插入位置在 cur 的左子树中
+            # the insert position is in the left subtree of cur node
             else:
                 cur = cur.left
-        # 插入节点
+        # insert the node
         node = TreeNode(num)
         if pre.val < num:
             pre.right = node
@@ -60,81 +60,81 @@ class BinarySearchTree:
             pre.left = node
 
     def remove(self, num: int):
-        """删除节点"""
-        # 若树为空，直接提前返回
+        """delete the node with the given value"""
+        # if the tree is empty, return directly
         if self._root is None:
             return
-        # 循环查找，越过叶节点后跳出
+        # if the root node is the target node, delete the root node
         cur, pre = self._root, None
         while cur is not None:
-            # 找到待删除节点，跳出循环
+            # if the target node is found, break the loop
             if cur.val == num:
                 break
             pre = cur
-            # 待删除节点在 cur 的右子树中
+            # if the target node is in the right subtree of cur node
             if cur.val < num:
                 cur = cur.right
-            # 待删除节点在 cur 的左子树中
+            # if the target node is in the left subtree of cur node
             else:
                 cur = cur.left
-        # 若无待删除节点，则直接返回
+        # if the target node is not found, return directly
         if cur is None:
             return
 
-        # 子节点数量 = 0 or 1
+        # the number of subtree nodes is 0 / 1
         if cur.left is None or cur.right is None:
-            # 当子节点数量 = 0 / 1 时， child = null / 该子节点
+            # when the number of subtree nodes is 0/1, child = null / the only child node
             child = cur.left or cur.right
-            # 删除节点 cur
+            # delete the cur node
             if cur != self._root:
                 if pre.left == cur:
                     pre.left = child
                 else:
                     pre.right = child
             else:
-                # 若删除节点为根节点，则重新指定根节点
+                # if to be deleted is the root node, then the child node is the new root node
                 self._root = child
-        # 子节点数量 = 2
+        # if the number of subtree nodes is 2
         else:
-            # 获取中序遍历中 cur 的下一个节点
+            # get the leftmost node of the right subtree
             tmp: TreeNode = cur.right
             while tmp.left is not None:
                 tmp = tmp.left
-            # 递归删除节点 tmp
+            # delete tmp recursively
             self.remove(tmp.val)
-            # 用 tmp 覆盖 cur
+            # using tmp to replace cur
             cur.val = tmp.val
 
 
 """Driver Code"""
 if __name__ == "__main__":
-    # 初始化二叉搜索树
+    # initialize the binary search tree
     bst = BinarySearchTree()
     nums = [8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15]
-    # 请注意，不同的插入顺序会生成不同的二叉树，该序列可以生成一个完美二叉树
+    # note: the order of inserting nodes will affect the shape of the binary search tree
     for num in nums:
         bst.insert(num)
-    print("\n初始化的二叉树为\n")
+    print("\nthe initial binary search tree is\n")
     print_tree(bst.get_root())
 
-    # 查找节点
+    # search the node with the given value
     node = bst.search(7)
-    print("\n查找到的节点对象为: {}，节点值 = {}".format(node, node.val))
+    print("\nthe node with value 7 is: {}, the value = {}".format(node, node.val))
 
-    # 插入节点
+    # insert a node with the given value
     bst.insert(16)
-    print("\n插入节点 16 后，二叉树为\n")
+    print("\nafter inserting a node with value 16, the binary search tree is\n")
     print_tree(bst.get_root())
 
-    # 删除节点
+    # delete the node with the given value
     bst.remove(1)
-    print("\n删除节点 1 后，二叉树为\n")
+    print("\nafter deleting a node with value 1, the binary search tree is\n")
     print_tree(bst.get_root())
 
     bst.remove(2)
-    print("\n删除节点 2 后，二叉树为\n")
+    print("\nafter deleting a node with value 2, the binary search tree is\n")
     print_tree(bst.get_root())
 
     bst.remove(4)
-    print("\n删除节点 4 后，二叉树为\n")
+    print("\nafter deleting a node with value 4, the binary search tree is\n")
     print_tree(bst.get_root())
