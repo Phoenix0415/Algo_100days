@@ -7,23 +7,23 @@ from graph_adjacency_list import GraphAdjList
 
 
 def dfs(graph: GraphAdjList, visited: set[Vertex], res: list[Vertex], vet: Vertex):
-    """深度优先遍历 DFS 辅助函数"""
-    res.append(vet)  # 记录访问顶点
-    visited.add(vet)  # 标记该顶点已被访问
-    # 遍历该顶点的所有邻接顶点
+    """Depth-First Search (DFS) helper function"""
+    res.append(vet)  # Record the visited vertex
+    visited.add(vet)  # Mark the vertex as visited
+    # Iterate through all adjacent vertices of the current vertex
     for adjVet in graph.adj_list[vet]:
         if adjVet in visited:
-            continue  # 跳过已被访问的顶点
-        # 递归访问邻接顶点
+            continue  # Skip already visited vertices
+        # Recursively visit adjacent vertices
         dfs(graph, visited, res, adjVet)
 
 
 def graph_dfs(graph: GraphAdjList, start_vet: Vertex) -> list[Vertex]:
-    """深度优先遍历 DFS"""
-    # 使用邻接表来表示图，以便获取指定顶点的所有邻接顶点
-    # 顶点遍历序列
+    """Depth-First Search (DFS) - recursive"""
+    # Use an adjacency list to represent the graph, making it easy to get adjacent vertices of a vertex
+    # Vertex traversal sequence
     res = []
-    # 哈希表，用于记录已被访问过的顶点
+    # Hash set to keep track of visited vertices
     visited = set[Vertex]()
     dfs(graph, visited, res, start_vet)
     return res
@@ -31,7 +31,7 @@ def graph_dfs(graph: GraphAdjList, start_vet: Vertex) -> list[Vertex]:
 
 """Driver Code"""
 if __name__ == "__main__":
-    # 初始化无向图
+    # Initialize an undirected graph
     v = vals_to_vets([0, 1, 2, 3, 4, 5, 6])
     edges = [
         [v[0], v[1]],
@@ -42,10 +42,10 @@ if __name__ == "__main__":
         [v[5], v[6]],
     ]
     graph = GraphAdjList(edges)
-    print("\n初始化后，图为")
+    print("\nAfter initialization, the graph is")
     graph.print()
 
-    # 深度优先遍历 DFS
+    # Depth-First Search (DFS)
     res = graph_dfs(graph, v[0])
-    print("\n深度优先遍历（DFS）顶点序列为")
+    print("\nDepth-First Search (DFS) vertex sequence:")
     print(vets_to_vals(res))
