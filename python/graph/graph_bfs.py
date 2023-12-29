@@ -8,31 +8,34 @@ from graph_adjacency_list import GraphAdjList
 
 
 def graph_bfs(graph: GraphAdjList, start_vet: Vertex) -> list[Vertex]:
-    """广度优先遍历 BFS"""
-    # 使用邻接表来表示图，以便获取指定顶点的所有邻接顶点
-    # 顶点遍历序列
+    """breadth first search - BFS"""
+    # using adjacency list to represent graph, which is easy to get all adjacent vertexes of a vertex
+    # traversal sequence of vertexes
     res = []
-    # 哈希表，用于记录已被访问过的顶点
+    # hashmap to record visited vertexes. using set to avoid duplicate vertexes
+    # # Initialize a haspmap using set to keep track of visited vertexes, starting with the initial vertex.
+    # python使用set()创建集合时需要将元素放在一个可迭代的对象中，比如列表，如果不加[]会报错，因为start_vet不是一个可迭代的对象。
     visited = set[Vertex]([start_vet])
-    # 队列用于实现 BFS
+    # # Initialize a queue with the initial vertex to record vertexes to be visited.
     que = deque[Vertex]([start_vet])
-    # 以顶点 vet 为起点，循环直至访问完所有顶点
+    # # Continue the traversal as long as there are vertexes in the queue.
     while len(que) > 0:
-        vet = que.popleft()  # 队首顶点出队
-        res.append(vet)  # 记录访问顶点
-        # 遍历该顶点的所有邻接顶点
+        vet = que.popleft()  # dequeue a vertex from the front of the queue
+        res.append(vet)  # Record the visited vertex.
+        
+        # Iterate through all adjacent vertices of the current vertex (vet)
         for adj_vet in graph.adj_list[vet]:
             if adj_vet in visited:
-                continue  # 跳过已被访问的顶点
-            que.append(adj_vet)  # 只入队未访问的顶点
-            visited.add(adj_vet)  # 标记该顶点已被访问
-    # 返回顶点遍历序列
+                continue  # Skip vertices that have already been visited
+            que.append(adj_vet)  # Enqueue unvisited adjacent vertices
+            visited.add(adj_vet)  # Mark the adjacent vertex as visited
+    # Return the traversal sequence of vertexes
     return res
 
 
 """Driver Code"""
 if __name__ == "__main__":
-    # 初始化无向图
+    # initialize a undirected graph
     v = vals_to_vets([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     edges = [
         [v[0], v[1]],
@@ -49,10 +52,10 @@ if __name__ == "__main__":
         [v[7], v[8]],
     ]
     graph = GraphAdjList(edges)
-    print("\n初始化后，图为")
+    print("\nafter initialization, the graph is")
     graph.print()
 
-    # 广度优先遍历 BFS
+    # breadth first search - BFS
     res = graph_bfs(graph, v[0])
-    print("\n广度优先遍历（BFS）顶点序列为")
+    print("\nthe breadth first search - BFS result is")
     print(vets_to_vals(res))
