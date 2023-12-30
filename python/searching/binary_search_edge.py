@@ -6,38 +6,37 @@ from binary_search_insertion import binary_search_insertion
 
 
 def binary_search_left_edge(nums: list[int], target: int) -> int:
-    """二分查找最左一个 target"""
-    # 等价于查找 target 的插入点
+    """binary search the left edge of target"""
+    # equivalent to binary_search_insertion(nums, target)
     i = binary_search_insertion(nums, target)
-    # 未找到 target ，返回 -1
+    # if the target is not found, return -1
     if i == len(nums) or nums[i] != target:
         return -1
-    # 找到 target ，返回索引 i
+    # if the target is found, return index i
     return i
 
-
 def binary_search_right_edge(nums: list[int], target: int) -> int:
-    """二分查找最右一个 target"""
-    # 转化为查找最左一个 target + 1
+    """binary search the right edge of target"""
+    # transform the problem to binary_search_insertion(nums, target + 1)
     i = binary_search_insertion(nums, target + 1)
-    # j 指向最右一个 target ，i 指向首个大于 target 的元素
+    # j is the index of the right edge of target, which is the index of the first occurrence that is greater than target
     j = i - 1
-    # 未找到 target ，返回 -1
+    # if the target is not found, return -1
     if j == -1 or nums[j] != target:
         return -1
-    # 找到 target ，返回索引 j
+    # the target is found, return index j
     return j
 
 
 """Driver Code"""
 if __name__ == "__main__":
-    # 包含重复元素的数组
+    # a sorted array with repeated elements
     nums = [1, 3, 6, 6, 6, 6, 6, 10, 12, 15]
-    print(f"\n数组 nums = {nums}")
+    print(f"\nthe array nums = {nums}")
 
-    # 二分查找左边界和右边界
+    # find the left and right edges of an element
     for target in [6, 7]:
         index = binary_search_left_edge(nums, target)
-        print(f"最左一个元素 {target} 的索引为 {index}")
+        print(f"the left edge of {target} is {index}")
         index = binary_search_right_edge(nums, target)
-        print(f"最右一个元素 {target} 的索引为 {index}")
+        print(f"the right edge of {target} is {index}")
