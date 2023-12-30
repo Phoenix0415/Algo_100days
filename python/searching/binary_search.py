@@ -1,34 +1,34 @@
 def binary_search(nums: list[int], target: int) -> int:
-    """二分查找（双闭区间）"""
-    # 初始化双闭区间 [0, n-1] ，即 i, j 分别指向数组首元素、尾元素
+    """binary search (double closed interval)"""
+    # initialize a double closed interval [0, n-1]
     i, j = 0, len(nums) - 1
-    # 循环，当搜索区间为空时跳出（当 i > j 时为空）
+    # keep searching while the interval is not empty (i <= j)
     while i <= j:
-        # 理论上 Python 的数字可以无限大（取决于内存大小），无须考虑大数越界问题
-        m = (i + j) // 2  # 计算中点索引 m
+        # theoretically, in python, the number can be infinitely large, so we don't need to worry about overflow
+        m = (i + j) // 2  # calculate the middle index m
         if nums[m] < target:
-            i = m + 1  # 此情况说明 target 在区间 [m+1, j] 中
+            i = m + 1  # the target is in the interval [m+1, j]
         elif nums[m] > target:
-            j = m - 1  # 此情况说明 target 在区间 [i, m-1] 中
+            j = m - 1  # the target is in the interval [i, m-1]
         else:
-            return m  # 找到目标元素，返回其索引
-    return -1  # 未找到目标元素，返回 -1
+            return m  # the target is found, return its index
+    return -1  # the target is not found, return -1
 
 
 def binary_search_lcro(nums: list[int], target: int) -> int:
-    """二分查找（左闭右开区间）"""
-    # 初始化左闭右开区间 [0, n) ，即 i, j 分别指向数组首元素、尾元素+1
+    """binary search (left closed right open interval)"""
+    # initialize a left closed right open interval [0, n)
     i, j = 0, len(nums)
-    # 循环，当搜索区间为空时跳出（当 i = j 时为空）
+    # keep searching while the interval is not empty (i < j) 
     while i < j:
-        m = (i + j) // 2  # 计算中点索引 m
+        m = (i + j) // 2  # calculate the middle index m
         if nums[m] < target:
-            i = m + 1  # 此情况说明 target 在区间 [m+1, j) 中
+            i = m + 1  # the target is in the interval [m+1, j)
         elif nums[m] > target:
-            j = m  # 此情况说明 target 在区间 [i, m) 中
+            j = m  # the target is in the interval [i, m)
         else:
-            return m  # 找到目标元素，返回其索引
-    return -1  # 未找到目标元素，返回 -1
+            return m  # the target is found, return its index
+    return -1  # the target is not found, return -1
 
 
 """Driver Code"""
@@ -36,10 +36,10 @@ if __name__ == "__main__":
     target = 6
     nums = [1, 3, 6, 8, 12, 15, 23, 26, 31, 35]
 
-    # 二分查找（双闭区间）
+    # binary search (double closed interval)
     index: int = binary_search(nums, target)
-    print("目标元素 6 的索引 = ", index)
-
-    # 二分查找（左闭右开区间）
+    print("the index of target element 6 is ", index)
+          
+    # binary search (left closed right open interval)
     index: int = binary_search_lcro(nums, target)
-    print("目标元素 6 的索引 = ", index)
+    print("the index of target element 6 is ", index)
