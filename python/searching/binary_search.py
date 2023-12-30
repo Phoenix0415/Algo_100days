@@ -1,3 +1,5 @@
+# this is recommended compared to the binary_search_lcro() below, because its interval is double closed and so does its operations.
+# Thus it is less error-prone.
 def binary_search(nums: list[int], target: int) -> int:
     """binary search (double closed interval)"""
     # initialize a double closed interval [0, n-1]

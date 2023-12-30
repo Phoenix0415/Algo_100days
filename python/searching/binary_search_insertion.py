@@ -1,47 +1,47 @@
 def binary_search_insertion_simple(nums: list[int], target: int) -> int:
-    """二分查找插入点（无重复元素）"""
-    i, j = 0, len(nums) - 1  # 初始化双闭区间 [0, n-1]
+    """binary search insertion (no repeated elements)"""
+    i, j = 0, len(nums) - 1  # initialize a double closed interval [0, n-1]
     while i <= j:
-        m = (i + j) // 2  # 计算中点索引 m
+        m = (i + j) // 2  # calculate the middle index m
         if nums[m] < target:
-            i = m + 1  # target 在区间 [m+1, j] 中
+            i = m + 1  # the target is in the interval [m+1, j]
         elif nums[m] > target:
-            j = m - 1  # target 在区间 [i, m-1] 中
+            j = m - 1  # the target is in the interval [i, m-1]
         else:
-            return m  # 找到 target ，返回插入点 m
-    # 未找到 target ，返回插入点 i
+            return m  # the target is found, return its index
+    # the target is not found, return the insertion point i
     return i
 
 
 def binary_search_insertion(nums: list[int], target: int) -> int:
-    """二分查找插入点（存在重复元素）"""
-    i, j = 0, len(nums) - 1  # 初始化双闭区间 [0, n-1]
+    """binary search insertion (with repeated elements)"""
+    i, j = 0, len(nums) - 1  # initialize a double closed interval [0, n-1]
     while i <= j:
-        m = (i + j) // 2  # 计算中点索引 m
+        m = (i + j) // 2  # calculate the middle index m
         if nums[m] < target:
-            i = m + 1  # target 在区间 [m+1, j] 中
+            i = m + 1  # the target is in the interval [m+1, j]
         elif nums[m] > target:
-            j = m - 1  # target 在区间 [i, m-1] 中
+            j = m - 1  # the target is in the interval [i, m-1]
         else:
-            j = m - 1  # 首个小于 target 的元素在区间 [i, m-1] 中
-    # 返回插入点 i
+            j = m - 1  # the first occurrence of the target is in the interval [i, m-1]
+    # the target is not found, return the insertion point i
     return i
 
 
 """Driver Code"""
 if __name__ == "__main__":
-    # 无重复元素的数组
+    # a sorted array without repeated elements
     nums = [1, 3, 6, 8, 12, 15, 23, 26, 31, 35]
-    print(f"\n数组 nums = {nums}")
-    # 二分查找插入点
+    print(f"\nthe array nums = {nums}")
+    # find the insertion point of an element
     for target in [6, 9]:
         index = binary_search_insertion_simple(nums, target)
-        print(f"元素 {target} 的插入点的索引为 {index}")
+        print(f"the insertion point of {target} is {index}")
 
-    # 包含重复元素的数组
+    # a sorted array with repeated elements
     nums = [1, 3, 6, 6, 6, 6, 6, 10, 12, 15]
-    print(f"\n数组 nums = {nums}")
-    # 二分查找插入点
+    print(f"\nthe array nums = {nums}")
+    # find the insertion point of an element
     for target in [2, 6, 20]:
         index = binary_search_insertion(nums, target)
-        print(f"元素 {target} 的插入点的索引为 {index}")
+        print(f"the insertion point of {target} is {index}")
