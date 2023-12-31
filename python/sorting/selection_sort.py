@@ -2,7 +2,7 @@ def selection_sort(nums: list[int]):
     """selection_sort"""
     n = len(nums)
     # outer loop: sort the unsorted part, which is [i, n-1], i = 0, 1, ..., n-2
-    for i in range(n - 1):
+    for i in range(n - 1): # i is the left boundary of the unsorted part
         # inner loop: find the minimum element in the unsorted part
         k = i # k is the index of the minimum element
         for j in range(i + 1, n):
